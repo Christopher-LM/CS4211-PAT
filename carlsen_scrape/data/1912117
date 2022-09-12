@@ -1,0 +1,24 @@
+[Event "Fischer Random Rapid"]
+[Site "Baerum NOR"]
+[Date "2018.02.10"]
+[EventDate "2018.02.09"]
+[Round "3"]
+[Result "1/2-1/2"]
+[White "Hikaru Nakamura"]
+[Black "Magnus Carlsen"]
+[ECO "000"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[PlyCount "87"]
+[SetUp "1"]
+[FEN "rbqnnkbr/pppppppp/8/8/8/8/PPPPPPPP/RBQNNKBR w KQkq - 0 1"]
+
+1. f3 c6 2. c4 e5 3. d4 d6 4. Bd3 Ne6 5. e3 Nf6 6. Qc3 exd4
+7. exd4 h5 8. Be3 Bh7 9. d5 cxd5 10. cxd5 Qxc3 11. Nxc3 Nc5
+12. Bxh7 Rxh7 13. Rc1 a6 14. Bg5 h4 15. Bxf6 gxf6 16. Ne4 Kg7
+17. Nxc5 dxc5 18. Rxc5 Ba7 19. Rc3 Rh5 20. Rd3 Re5 21. f4 Re4
+22. Nf3 Rc8 23. Rc3 Rce8 24. Rc2 Rxf4 25. d6 Rd8 26. Rd2 Re4
+27. d7 f5 28. g3 hxg3 29. hxg3 Re7 30. Rdh2 Rexd7 31. Rh7+ Kf6
+32. Kg2 Be3 33. Rf1 Rg8 34. Kh3 Rd5 35. Nh4 Rg5 36. g4 f4
+37. Ng2 Rd3 38. Kh4 Rg7 39. g5+ Rxg5 40. Nxe3 Rxe3 41. Rxf4+
+Kg6 42. Rhxf7 Rh5+ 43. Kg4 Rg5+ 44. Kh4 1/2-1/2
