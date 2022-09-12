@@ -1,0 +1,22 @@
+{
+  "name": "cs4211-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "game-id": "node game_id_scraper.js",
+    "download-data": "node game_data_scraper.js",
+    "simulate": "node game_simulator.js",
+    "simulate-single": "node game_simulator_simple.js",
+    "gen-json": "node pgn_to_json.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mliebelt/pgn-parser": "^1.4.4",
+    "chess.js": "^1.0.0-alpha.0",
+    "node-fetch": "^3.2.10"
+  }
+}
