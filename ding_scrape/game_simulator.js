@@ -81,6 +81,7 @@ const buildJson = (obj) => {
   }
 
   const boardState = convertBoard(board.board());
+  const nextTurn = board.turn();
 
   const movesLeft = [];
   for (; i < moves.length; i++) {
@@ -112,6 +113,7 @@ const buildJson = (obj) => {
     statePieceCount: pieceCount,
     endPieceCount,
     boardState,
+    nextTurn,
   };
 }
 
