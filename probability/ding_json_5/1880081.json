@@ -1,0 +1,48 @@
+{
+  "event": "Hainan Danzhou GM",
+  "site": "Danzhou CHN",
+  "date": "2017.07.16",
+  "eventDate": "2017.07.09",
+  "dateMillis": 1500134400000,
+  "eventDateMillis": 1499529600000,
+  "round": "7",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Yu Yangyi",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Bxc3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "a5",
+      "type": "b",
+      "color": "b"
+    },
+    {
+      "square": "e4",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "f4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "c3",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "e2",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

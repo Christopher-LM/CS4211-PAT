@@ -1,0 +1,52 @@
+{
+  "event": "Magnus Carlsen Chess Tour Finals",
+  "site": "chess24.com INT",
+  "date": "2020.08.12",
+  "eventDate": "2020.08.09",
+  "dateMillis": 1597161600000,
+  "eventDateMillis": 1596902400000,
+  "round": "1.43",
+  "result": "1/2-1/2",
+  "white": "Magnus Carlsen",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Ke4",
+    "Nc4",
+    "Kf5",
+    "Nxb2",
+    "Kxg5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "e5",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "a4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "e3",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "b2",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

@@ -1,0 +1,50 @@
+{
+  "event": "World Team Chess Championship",
+  "site": "Khanty-Mansiysk RUS",
+  "date": "2017.06.24",
+  "eventDate": "2017.06.17",
+  "dateMillis": 1498233600000,
+  "eventDateMillis": 1497628800000,
+  "round": "7.4",
+  "result": "1/2-1/2",
+  "white": "Ian Nepomniachtchi",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxa4",
+    "Ke4",
+    "Kb5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "a5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "a4",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "d4",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "f4",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "d3",
+      "type": "n",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

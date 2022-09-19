@@ -1,0 +1,50 @@
+{
+  "event": "Sinquefield Cup",
+  "site": "St Louis, MO USA",
+  "date": "2019.08.24",
+  "eventDate": "2019.08.17",
+  "dateMillis": 1566576000000,
+  "eventDateMillis": 1565971200000,
+  "round": "7",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Viswanathan Anand",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Ke3",
+    "Nxg5",
+    "Nxg5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "g6",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "e4",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "f3",
+      "type": "n",
+      "color": "w"
+    },
+    {
+      "square": "d2",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

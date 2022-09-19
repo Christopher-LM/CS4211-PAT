@@ -1,0 +1,51 @@
+{
+  "event": "Magnus Carlsen Invitational",
+  "site": "chess24.com INT",
+  "date": "2020.04.29",
+  "eventDate": "2020.04.18",
+  "dateMillis": 1588089600000,
+  "eventDateMillis": 1587139200000,
+  "round": "6.2",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Hikaru Nakamura",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kxa7",
+    "Kg3",
+    "Rxh3+",
+    "Kxh3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "a7",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "b7",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "h7",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "g4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h3",
+      "type": "p",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

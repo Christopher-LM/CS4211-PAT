@@ -1,0 +1,53 @@
+{
+  "event": "Chinese Championship",
+  "site": "Xinghua CHN",
+  "date": "2014.03.15",
+  "eventDate": "2014.03.11",
+  "dateMillis": 1394812800000,
+  "eventDateMillis": 1394467200000,
+  "round": "5",
+  "result": "1-0",
+  "white": "Yifan Hou",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": false,
+  "isDingBlack": true,
+  "moves": [
+    "Kxf4",
+    "Kb3",
+    "Ke5",
+    "Kxb4",
+    "Kd6",
+    "Kb5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "f5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "b4",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "c4",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "f4",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "c2",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

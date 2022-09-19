@@ -1,0 +1,50 @@
+{
+  "event": "China - Russia Challenge",
+  "site": "Heixiazi CHN",
+  "date": "2015.07.30",
+  "eventDate": "2015.07.29",
+  "dateMillis": 1438185600000,
+  "eventDateMillis": 1438099200000,
+  "round": "2.4",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Sergey Karjakin",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Rxb6",
+    "Rxb6+",
+    "Kxb6"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "b7",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "b6",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "e6",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "f5",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "b2",
+      "type": "r",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

@@ -1,0 +1,49 @@
+{
+  "event": "Sinquefield Cup",
+  "site": "St Louis, MO USA",
+  "date": "2019.08.25",
+  "eventDate": "2019.08.17",
+  "dateMillis": 1566662400000,
+  "eventDateMillis": 1565971200000,
+  "round": "8",
+  "result": "1/2-1/2",
+  "white": "Magnus Carlsen",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Rxd3",
+    "Bxd3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "d6",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "f5",
+      "type": "b",
+      "color": "b"
+    },
+    {
+      "square": "g5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "d3",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "e3",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

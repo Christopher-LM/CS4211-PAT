@@ -1,0 +1,69 @@
+{
+  "event": "Maotai Prince Cup Kings",
+  "site": "Jinzhou",
+  "date": "2009.09.20",
+  "dateMillis": 1253376000000,
+  "eventDateMillis": null,
+  "round": "4",
+  "result": "1/2-1/2",
+  "white": "Ni Hua",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kc4",
+    "Rg5",
+    "Rb5",
+    "Rxb5",
+    "Kxb5",
+    "Kd6",
+    "Kc4",
+    "Kc6",
+    "d5+",
+    "Kd6",
+    "Kd4",
+    "Kd7",
+    "Ke5",
+    "Ke7",
+    "d6+",
+    "Kd7",
+    "Kd5",
+    "Kd8",
+    "Ke6",
+    "Ke8",
+    "d7+",
+    "Kd8",
+    "Kd6"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "d7",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h5",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "d4",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "b3",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "d3",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

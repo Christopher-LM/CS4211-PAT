@@ -1,0 +1,49 @@
+{
+  "event": "GCT Kolkata Rapid & Blitz",
+  "site": "Kolkata IND",
+  "date": "2019.11.26",
+  "eventDate": "2019.11.25",
+  "dateMillis": 1574697600000,
+  "eventDateMillis": 1574611200000,
+  "round": "13.4",
+  "result": "1/2-1/2",
+  "white": "Hikaru Nakamura",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxb2",
+    "Ke5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "b7",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "d7",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "f5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "c3",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "b2",
+      "type": "r",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

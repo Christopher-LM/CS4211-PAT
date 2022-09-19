@@ -1,0 +1,63 @@
+{
+  "event": "Magnus Carlsen Invitational",
+  "site": "chess24.com INT",
+  "date": "2020.04.21",
+  "eventDate": "2020.04.18",
+  "dateMillis": 1587398400000,
+  "eventDateMillis": 1587139200000,
+  "round": "2.2",
+  "result": "1/2-1/2",
+  "white": "Fabiano Caruana",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kg2",
+    "Qg5+",
+    "Kh2",
+    "Qf4+",
+    "Kg2",
+    "Qg4+",
+    "Kh2",
+    "Qxh4+",
+    "Kg2",
+    "Qg4+",
+    "Kh2",
+    "Qf3",
+    "Kg1",
+    "Qg3+",
+    "Kh1",
+    "Qxf2"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "f6",
+      "type": "q",
+      "color": "w"
+    },
+    {
+      "square": "b4",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "h4",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "h3",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "f2",
+      "type": "p",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "b"
+}

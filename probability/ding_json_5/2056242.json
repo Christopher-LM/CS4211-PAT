@@ -1,0 +1,65 @@
+{
+  "event": "Goldmoney Asian Rapid",
+  "site": "chess24.com INT",
+  "date": "2021.06.29",
+  "eventDate": "2021.06.26",
+  "dateMillis": 1624896000000,
+  "eventDateMillis": 1624636800000,
+  "round": "1.11",
+  "result": "1/2-1/2",
+  "white": "Jan-Krzysztof Duda",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxd7",
+    "h3",
+    "Ke6",
+    "Kg4",
+    "Rc4+",
+    "Kg3",
+    "Kf5",
+    "h2",
+    "Rc3+",
+    "Kg2",
+    "Kg4",
+    "h1=Q",
+    "Rc2+",
+    "Kg1",
+    "Rc1+",
+    "Kh2",
+    "Rxh1+",
+    "Kxh1"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "c8",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "d7",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "e6",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h4",
+      "type": "p",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

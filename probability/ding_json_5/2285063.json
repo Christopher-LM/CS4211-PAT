@@ -1,0 +1,54 @@
+{
+  "event": "Chessable Masters",
+  "site": "chess24.com INT",
+  "date": "2022.05.26",
+  "eventDate": "2022.05.19",
+  "dateMillis": 1653494400000,
+  "eventDateMillis": 1652889600000,
+  "round": "23.1",
+  "result": "1/2-1/2",
+  "white": "R Praggnanandhaa",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kg7",
+    "Rg1",
+    "h6",
+    "Rh1",
+    "h7",
+    "Rxh7+",
+    "Kxh7"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "e8",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g6",
+      "type": "n",
+      "color": "w"
+    },
+    {
+      "square": "h6",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "h5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "g4",
+      "type": "r",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

@@ -1,0 +1,48 @@
+{
+  "event": "SPICE Cup",
+  "site": "St Louis USA",
+  "date": "2012.10.17",
+  "eventDate": "2012.10.12",
+  "dateMillis": 1350403200000,
+  "eventDateMillis": 1349971200000,
+  "round": "6",
+  "result": "1/2-1/2",
+  "white": "Wesley So",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxg4"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "h7",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "e6",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "f6",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g4",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "h4",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

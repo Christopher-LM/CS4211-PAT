@@ -1,0 +1,69 @@
+{
+  "event": "Goldmoney Asian Rapid",
+  "site": "chess24.com INT",
+  "date": "2021.06.26",
+  "eventDate": "2021.06.26",
+  "dateMillis": 1624636800000,
+  "eventDateMillis": 1624636800000,
+  "round": "3.1",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Levon Aronian",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Rf5",
+    "Rb7",
+    "Kg8",
+    "Ra7",
+    "Rf8",
+    "Rb7",
+    "Kh8",
+    "Ra7",
+    "Rf4",
+    "Rb7",
+    "g5",
+    "Rb5",
+    "g4",
+    "Rg5",
+    "Kh7",
+    "Ke5",
+    "Ra4",
+    "Kf5",
+    "Kh6",
+    "Rxg4",
+    "Rxg4",
+    "Kxg4"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "f8",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "a7",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "e6",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g6",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g5",
+      "type": "r",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "b"
+}

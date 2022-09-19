@@ -1,0 +1,58 @@
+{
+  "event": "Magnus Carlsen Invitational",
+  "site": "chess24.com INT",
+  "date": "2020.04.23",
+  "eventDate": "2020.04.18",
+  "dateMillis": 1587571200000,
+  "eventDateMillis": 1587139200000,
+  "round": "3.3",
+  "result": "1/2-1/2",
+  "white": "Maxime Vachier-Lagrave",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Ke5",
+    "f6",
+    "Ke6",
+    "Kb5",
+    "h6",
+    "gxh6",
+    "Kxf6",
+    "h7",
+    "Kg7",
+    "h8=Q+",
+    "Kxh8"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "h7",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "d6",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "a5",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "f5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

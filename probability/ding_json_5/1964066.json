@@ -1,0 +1,63 @@
+{
+  "event": "Norway Chess",
+  "site": "Stavanger NOR",
+  "date": "2019.06.10",
+  "eventDate": "2019.06.04",
+  "dateMillis": 1560096000000,
+  "eventDateMillis": 1559577600000,
+  "round": "6.1",
+  "result": "1/2-1/2",
+  "white": "Magnus Carlsen",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kd3",
+    "g3",
+    "Rb6+",
+    "Kf5",
+    "Rxg6",
+    "Kxg6",
+    "Ke2",
+    "Kg5",
+    "Kf3",
+    "Kh4",
+    "Kg2",
+    "Kg4",
+    "Kg1",
+    "Kh3",
+    "Kh1",
+    "g2+"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "e6",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g6",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "b5",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "g4",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "c2",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

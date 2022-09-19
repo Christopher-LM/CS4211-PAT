@@ -1,0 +1,49 @@
+{
+  "event": "World Blitz Championship",
+  "site": "Riyadh KSA",
+  "date": "2017.12.29",
+  "eventDate": "2017.12.29",
+  "dateMillis": 1514476800000,
+  "eventDateMillis": 1514476800000,
+  "round": "4.7",
+  "result": "1/2-1/2",
+  "white": "Vladimir Malakhov",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxa6",
+    "Bxa5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "a6",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "b6",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "a5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "b4",
+      "type": "b",
+      "color": "b"
+    },
+    {
+      "square": "b3",
+      "type": "k",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

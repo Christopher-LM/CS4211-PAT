@@ -1,0 +1,52 @@
+{
+  "event": "IMSA Elite Mind Games (Blitz)",
+  "site": "?",
+  "date": "2017.12.13",
+  "dateMillis": 1513094400000,
+  "eventDateMillis": null,
+  "round": "22.3",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Anton Korobov",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Rxa4",
+    "Rb5",
+    "Rc4+",
+    "Rc5",
+    "Rxc5+",
+    "Kxc5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "b6",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "c6",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "a4",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "b4",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "e3",
+      "type": "k",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "b"
+}

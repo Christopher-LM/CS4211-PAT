@@ -1,0 +1,53 @@
+{
+  "event": "Charity Cup",
+  "site": "Chess24",
+  "date": "2022.03.23",
+  "eventDate": "2022.03.19",
+  "dateMillis": 1647964800000,
+  "eventDateMillis": 1647619200000,
+  "round": "1.12",
+  "result": "1/2-1/2",
+  "white": "Van Foreest, Jorden",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Rxg4+",
+    "Kxg4",
+    "Ke2",
+    "Kg3",
+    "Kf1",
+    "Kf3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "g6",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "g4",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "g3",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "d2",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "f2",
+      "type": "p",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

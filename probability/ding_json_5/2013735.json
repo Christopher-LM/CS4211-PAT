@@ -1,0 +1,60 @@
+{
+  "event": "Skilling Open",
+  "site": "chess24.com INT",
+  "date": "2020.11.23",
+  "eventDate": "2020.11.22",
+  "dateMillis": 1606060800000,
+  "eventDateMillis": 1605974400000,
+  "round": "6",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Peter Svidler",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kc5",
+    "Kf5",
+    "Kb6",
+    "g5",
+    "Kxa6",
+    "g4",
+    "Bc7",
+    "Ke4",
+    "Bb8",
+    "Kf3",
+    "Bc7",
+    "g3",
+    "Bxg3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "a6",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g6",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "a5",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "c4",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

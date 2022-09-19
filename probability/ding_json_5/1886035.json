@@ -1,0 +1,78 @@
+{
+  "event": "World Cup",
+  "site": "Tbilisi GEO",
+  "date": "2017.09.21",
+  "eventDate": "2017.09.03",
+  "dateMillis": 1505923200000,
+  "eventDateMillis": 1504368000000,
+  "round": "6.5",
+  "result": "0-1",
+  "white": "Wesley So",
+  "black": "Ding Liren",
+  "isDingWin": true,
+  "isDraw": false,
+  "isDingBlack": true,
+  "moves": [
+    "Kg6",
+    "Rf2",
+    "Qe3+",
+    "Kg2",
+    "Kxg5",
+    "Rf3",
+    "Qe2+",
+    "Kg3",
+    "Qe1+",
+    "Kg2",
+    "Kg4",
+    "Rf2",
+    "Qe4+",
+    "Kh2",
+    "Kh4",
+    "Ra2",
+    "Qe5+",
+    "Kg1",
+    "Qd4+",
+    "Kh2",
+    "Qd6+",
+    "Kg1",
+    "Qc5+",
+    "Kh2",
+    "Qc7+",
+    "Kg1",
+    "Qb6+",
+    "Kg2",
+    "Qb7+",
+    "Kh2",
+    "Qb8+"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "g7",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "f4",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "g3",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "e2",
+      "type": "q",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "b"
+}

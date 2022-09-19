@@ -1,0 +1,49 @@
+{
+  "event": "SportAccord World Mind Games (Men's Rapid)",
+  "site": "Beijing CHN",
+  "date": "2012.12.15",
+  "dateMillis": 1355500800000,
+  "eventDateMillis": null,
+  "round": "6.1",
+  "result": "1/2-1/2",
+  "white": "Laurent Fressinet",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Bxf1",
+    "e6",
+    "Kxe6"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "e7",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "e5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "g3",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g2",
+      "type": "b",
+      "color": "b"
+    },
+    {
+      "square": "f1",
+      "type": "b",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

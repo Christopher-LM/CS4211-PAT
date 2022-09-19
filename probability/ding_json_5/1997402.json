@@ -1,0 +1,51 @@
+{
+  "event": "Chessable Masters",
+  "site": "chess24.com INT",
+  "date": "2020.06.21",
+  "eventDate": "2020.06.21",
+  "dateMillis": 1592668800000,
+  "eventDateMillis": 1592668800000,
+  "round": "4.1",
+  "result": "1/2-1/2",
+  "white": "Maxime Vachier-Lagrave",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Rxa6",
+    "Rf6",
+    "Rxf6",
+    "Kxf6"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "a6",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "c6",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "c5",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "f2",
+      "type": "r",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

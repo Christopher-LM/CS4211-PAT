@@ -1,0 +1,50 @@
+{
+  "event": "Chessable Masters",
+  "site": "chess24.com INT",
+  "date": "2020.06.23",
+  "eventDate": "2020.06.20",
+  "dateMillis": 1592841600000,
+  "eventDateMillis": 1592582400000,
+  "round": "6",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Fabiano Caruana",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "gxh4",
+    "Kxh4",
+    "Kg2"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "h5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h4",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g3",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "f2",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

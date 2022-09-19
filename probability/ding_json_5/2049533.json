@@ -1,0 +1,60 @@
+{
+  "event": "FTX Crypto Cup",
+  "site": "chess24.com INT",
+  "date": "2021.05.23",
+  "eventDate": "2021.05.23",
+  "dateMillis": 1621699200000,
+  "eventDateMillis": 1621699200000,
+  "round": "4.1",
+  "result": "1/2-1/2",
+  "white": "Levon Aronian",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kd4",
+    "Kc7",
+    "Ke5",
+    "Kd8",
+    "Kf6",
+    "Ke8",
+    "Nh7",
+    "f4",
+    "Kf5",
+    "f8=Q+",
+    "Nxf8",
+    "Kxf8",
+    "Kxf4"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "f8",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "f7",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "b6",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "c3",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "f3",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

@@ -1,0 +1,53 @@
+{
+  "event": "Yinzhou Cup",
+  "site": "Ningbo CHN",
+  "date": "2019.12.22",
+  "eventDate": "2019.12.22",
+  "dateMillis": 1576944000000,
+  "eventDateMillis": 1576944000000,
+  "round": "1.2",
+  "result": "1/2-1/2",
+  "white": "Bu Xiangzhi",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kf3",
+    "Kb7",
+    "e2",
+    "Bxe2+",
+    "Kxe2",
+    "Kxa7"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "a7",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "c7",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "a6",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "f4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "e3",
+      "type": "p",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "b"
+}

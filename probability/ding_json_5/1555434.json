@@ -1,0 +1,55 @@
+{
+  "event": "Russia vs China (Rapid)",
+  "site": "Sochi RUS",
+  "date": "2009.08.22",
+  "eventDate": "2009.08.21",
+  "dateMillis": 1250870400000,
+  "eventDateMillis": 1250784000000,
+  "round": "9",
+  "result": "1/2-1/2",
+  "white": "Artyom Timofeev",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Rxa8",
+    "h2",
+    "Rg8+",
+    "Kf2",
+    "Rh8",
+    "Kg2",
+    "Rxh2+",
+    "Kxh2"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "a8",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "a6",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "g3",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h3",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "d2",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

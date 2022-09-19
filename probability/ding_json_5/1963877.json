@@ -1,0 +1,57 @@
+{
+  "event": "Norway Chess (Blitz)",
+  "site": "Stavanger NOR",
+  "date": "2019.06.03",
+  "eventDate": "2019.06.03",
+  "dateMillis": 1559491200000,
+  "eventDateMillis": 1559491200000,
+  "round": "3.5",
+  "result": "1-0",
+  "white": "Ding Liren",
+  "black": "Wesley So",
+  "isDingWin": true,
+  "isDraw": false,
+  "isDingBlack": false,
+  "moves": [
+    "Kg5",
+    "Nc6",
+    "Kf5",
+    "a5",
+    "Nf4",
+    "a6",
+    "Ne6",
+    "Nd4+",
+    "Nxd4",
+    "a7"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "f7",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "h6",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "a5",
+      "type": "n",
+      "color": "w"
+    },
+    {
+      "square": "h5",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "a4",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

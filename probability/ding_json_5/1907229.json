@@ -1,0 +1,57 @@
+{
+  "event": "World Blitz Championship",
+  "site": "Riyadh KSA",
+  "date": "2017.12.30",
+  "eventDate": "2017.12.29",
+  "dateMillis": 1514563200000,
+  "eventDateMillis": 1514476800000,
+  "round": "20.4",
+  "result": "1/2-1/2",
+  "white": "Yu Yangyi",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "a4",
+    "Kg5",
+    "Kxd5",
+    "Kf6",
+    "Kc5",
+    "Ke7",
+    "Kb5",
+    "Kd7",
+    "Kxa5",
+    "Kc7"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "a5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "d5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "d4",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "h4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "a3",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

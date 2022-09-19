@@ -1,0 +1,55 @@
+{
+  "event": "Legends of Chess",
+  "site": "chess24.com INT",
+  "date": "2020.07.25",
+  "eventDate": "2020.07.21",
+  "dateMillis": 1595606400000,
+  "eventDateMillis": 1595260800000,
+  "round": "5.3",
+  "result": "1/2-1/2",
+  "white": "Vladimir Kramnik",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Rxd4",
+    "g6",
+    "Rd8",
+    "g7",
+    "Rg8",
+    "Kg6",
+    "Rxg7+",
+    "Kxg7"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "f5",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "a4",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "d4",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "f1",
+      "type": "k",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "b"
+}

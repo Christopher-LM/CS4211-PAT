@@ -1,0 +1,53 @@
+{
+  "event": "Hainan Danzhou GM",
+  "site": "Danzhou CHN",
+  "date": "2014.06.26",
+  "eventDate": "2014.06.25",
+  "dateMillis": 1403712000000,
+  "eventDateMillis": 1403625600000,
+  "round": "2.5",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Arkadij Naiditsch",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Bxh7",
+    "Kh3",
+    "Be4",
+    "Kh2",
+    "Kg4",
+    "g2"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "h7",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "g6",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "h4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "f3",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g3",
+      "type": "p",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

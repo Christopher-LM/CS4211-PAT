@@ -1,0 +1,51 @@
+{
+  "event": "Russia vs China (Blitz)",
+  "site": "Sochi RUS",
+  "date": "2009.08.23",
+  "eventDate": "2009.08.23",
+  "dateMillis": 1250956800000,
+  "eventDateMillis": 1250956800000,
+  "round": "10",
+  "result": "1/2-1/2",
+  "white": "Vladimir Malakhov",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Bxc4",
+    "Kc5",
+    "Bxd5",
+    "Kxd5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "a6",
+      "type": "b",
+      "color": "b"
+    },
+    {
+      "square": "d6",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "d5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "h5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "c4",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

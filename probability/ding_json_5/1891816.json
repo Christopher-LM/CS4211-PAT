@@ -1,0 +1,77 @@
+{
+  "event": "Champions Showdown: Carlsen - Ding (Blitz)",
+  "site": "St Louis, MO USA",
+  "date": "2017.11.14",
+  "eventDate": "2017.11.14",
+  "dateMillis": 1510588800000,
+  "eventDateMillis": 1510588800000,
+  "round": "5",
+  "result": "1/2-1/2",
+  "white": "Magnus Carlsen",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Rg4",
+    "Kf3",
+    "Rxg5",
+    "g4",
+    "Kf6",
+    "Kf4",
+    "Kg6",
+    "Kg3",
+    "Re5",
+    "Kf4",
+    "Kf6",
+    "Kf3",
+    "Kg5",
+    "Kg3",
+    "Re4",
+    "Kf3",
+    "Rxg4",
+    "Ke3",
+    "Rf4",
+    "Kd3",
+    "Kf5",
+    "Ke3",
+    "Re4+",
+    "Kd3",
+    "Ke5",
+    "Kc3",
+    "Rd4",
+    "Kc2",
+    "Kd5",
+    "Kc3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "e5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g5",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "d4",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "e3",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g3",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

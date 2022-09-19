@@ -1,0 +1,54 @@
+{
+  "event": "Hainan Danzhou GM",
+  "site": "Danzhou CHN",
+  "date": "2016.07.13",
+  "eventDate": "2016.07.08",
+  "dateMillis": 1468339200000,
+  "eventDateMillis": 1467907200000,
+  "round": "6.1",
+  "result": "1/2-1/2",
+  "white": "Yifan Hou",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxg5",
+    "c4",
+    "Nf4",
+    "c3",
+    "Ne2+",
+    "Kd3",
+    "Nxc3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "f6",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g6",
+      "type": "n",
+      "color": "w"
+    },
+    {
+      "square": "c5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g5",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "d4",
+      "type": "k",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

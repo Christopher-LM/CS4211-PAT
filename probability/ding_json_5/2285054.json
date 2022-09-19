@@ -1,0 +1,50 @@
+{
+  "event": "Chessable Masters",
+  "site": "chess24.com INT",
+  "date": "2022.05.24",
+  "eventDate": "2022.05.19",
+  "dateMillis": 1653321600000,
+  "eventDateMillis": 1652889600000,
+  "round": "10.2",
+  "result": "1/2-1/2",
+  "white": "Magnus Carlsen",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Rxh5",
+    "Rxh5+",
+    "Kxh5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "c7",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h6",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "a5",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "h5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "h4",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

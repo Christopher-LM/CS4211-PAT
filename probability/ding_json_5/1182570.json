@@ -1,0 +1,71 @@
+{
+  "event": "TCh-CHN Men",
+  "site": "Suzhou, Jiangsu CHN",
+  "date": "2001.04.02",
+  "eventDate": "2001.03.02",
+  "dateMillis": 986140800000,
+  "eventDateMillis": 983462400000,
+  "round": "7",
+  "result": "1/2-1/2",
+  "white": "Liu Renhui",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "f4+",
+    "Kf6",
+    "Kh4",
+    "Nc3",
+    "g5+",
+    "Kg7",
+    "f5",
+    "Ne4",
+    "Kh5",
+    "Ng3+",
+    "Kg4",
+    "Ne4",
+    "Kf4",
+    "Nxg5",
+    "Kxg5",
+    "Kf7",
+    "f6",
+    "Kf8",
+    "Kf5",
+    "Kf7",
+    "Ke5",
+    "Kf8",
+    "Ke6",
+    "Ke8"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "e5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g4",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "f3",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "g3",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "b1",
+      "type": "n",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

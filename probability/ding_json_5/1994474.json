@@ -1,0 +1,53 @@
+{
+  "event": "Magnus Carlsen Invitational",
+  "site": "chess24.com INT",
+  "date": "2020.04.27",
+  "eventDate": "2020.04.18",
+  "dateMillis": 1587916800000,
+  "eventDateMillis": 1587139200000,
+  "round": "5.1",
+  "result": "1/2-1/2",
+  "white": "Ian Nepomniachtchi",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxc6",
+    "Ne3",
+    "g5",
+    "Kc3",
+    "g4",
+    "Nxg4"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "g7",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "c6",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "d5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "c4",
+      "type": "n",
+      "color": "w"
+    },
+    {
+      "square": "b2",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

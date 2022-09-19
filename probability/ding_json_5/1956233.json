@@ -1,0 +1,60 @@
+{
+  "event": "Shenzhen Masters",
+  "site": "Shenzhen CHN",
+  "date": "2019.04.17",
+  "eventDate": "2019.04.17",
+  "dateMillis": 1555430400000,
+  "eventDateMillis": 1555430400000,
+  "round": "1.2",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Richard Rapport",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kxb7",
+    "f2",
+    "Rb1",
+    "Kf4",
+    "Kc6",
+    "Kf3",
+    "Kd5",
+    "Kg2",
+    "Ke4",
+    "f1=R",
+    "Rxf1",
+    "Kxf1",
+    "Kd5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "b7",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "c7",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "b4",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "f3",
+      "type": "p",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

@@ -1,0 +1,52 @@
+{
+  "event": "Gashimov Memorial",
+  "site": "Shamkir AZE",
+  "date": "2019.04.02",
+  "eventDate": "2019.03.31",
+  "dateMillis": 1554134400000,
+  "eventDateMillis": 1553961600000,
+  "round": "3.4",
+  "result": "1/2-1/2",
+  "white": "Teimour Radjabov",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Rh6+",
+    "Rh5",
+    "Rxh5+",
+    "Kxh5",
+    "Kxf3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "a6",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "d5",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "f4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h4",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "f3",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

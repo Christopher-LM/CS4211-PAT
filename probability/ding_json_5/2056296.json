@@ -1,0 +1,53 @@
+{
+  "event": "Goldmoney Asian Rapid",
+  "site": "chess24.com INT",
+  "date": "2021.07.03",
+  "eventDate": "2021.06.26",
+  "dateMillis": 1625241600000,
+  "eventDateMillis": 1624636800000,
+  "round": "3.12",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Magnus Carlsen",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kxg5",
+    "Bc1+",
+    "Kf5",
+    "Kd5",
+    "g5",
+    "Bxg5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "c6",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "f5",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g4",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "b2",
+      "type": "b",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

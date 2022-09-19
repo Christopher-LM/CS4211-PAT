@@ -1,0 +1,74 @@
+{
+  "event": "Goldmoney Asian Rapid",
+  "site": "chess24.com INT",
+  "date": "2021.07.02",
+  "eventDate": "2021.06.26",
+  "dateMillis": 1625155200000,
+  "eventDateMillis": 1624636800000,
+  "round": "2.24",
+  "result": "1-0",
+  "white": "Vladislav Artemiev",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": false,
+  "isDingBlack": true,
+  "moves": [
+    "Rb6",
+    "Rh1",
+    "b4",
+    "Rd1+",
+    "Kc5",
+    "Ke5",
+    "Rh6",
+    "Rc1+",
+    "Kb6",
+    "Kd5",
+    "b5",
+    "Rb1",
+    "Ka6",
+    "Kc5",
+    "Rc6+",
+    "Kd5",
+    "Rc2",
+    "Ra1+",
+    "Kb7",
+    "Rb1",
+    "b6",
+    "Kd6",
+    "Rd2+",
+    "Kc5",
+    "Kc7",
+    "Rxb6",
+    "Rc2+"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "f5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "b4",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "d4",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "b3",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "h3",
+      "type": "r",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

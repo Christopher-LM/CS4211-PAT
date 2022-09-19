@@ -1,0 +1,52 @@
+{
+  "event": "Airthings Masters",
+  "site": "Chess24",
+  "date": "2022.02.20",
+  "eventDate": "2022.02.13",
+  "dateMillis": 1645286400000,
+  "eventDateMillis": 1644681600000,
+  "round": "7.8",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Jan-Krzysztof Duda",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kxb4",
+    "Kd6",
+    "Be2",
+    "h5",
+    "Bxh5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "c7",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h6",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "c5",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "h5",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "b4",
+      "type": "n",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

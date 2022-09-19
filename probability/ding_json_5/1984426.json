@@ -1,0 +1,48 @@
+{
+  "event": "Yinzhou Cup",
+  "site": "Ningbo CHN",
+  "date": "2019.12.23",
+  "eventDate": "2019.12.22",
+  "dateMillis": 1577030400000,
+  "eventDateMillis": 1576944000000,
+  "round": "5.3",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Yu Yangyi",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kxf4"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "b7",
+      "type": "b",
+      "color": "w"
+    },
+    {
+      "square": "g7",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "h5",
+      "type": "b",
+      "color": "b"
+    },
+    {
+      "square": "f4",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g3",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

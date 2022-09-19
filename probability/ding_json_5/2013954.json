@@ -1,0 +1,91 @@
+{
+  "event": "Skilling Open",
+  "site": "chess24.com INT",
+  "date": "2020.11.24",
+  "eventDate": "2020.11.22",
+  "dateMillis": 1606147200000,
+  "eventDateMillis": 1605974400000,
+  "round": "15.8",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Anish Giri",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Re1",
+    "Ra2",
+    "f6",
+    "Rb2",
+    "Kf7",
+    "Rf2",
+    "Kg6",
+    "Rg2+",
+    "Kh5",
+    "Rf2",
+    "Kg5",
+    "Rg2+",
+    "Kf5",
+    "Rf2+",
+    "Ke6",
+    "Ra2",
+    "Ke7",
+    "Ra7+",
+    "Ke6",
+    "Ra2",
+    "f5",
+    "Ra6+",
+    "Kf7",
+    "Kd3",
+    "Kg7",
+    "Kd2",
+    "Re5",
+    "Kd3",
+    "Kf7",
+    "Rb6",
+    "Re7",
+    "Ra6",
+    "Kg7",
+    "Rb6",
+    "f4",
+    "Rb4",
+    "f3",
+    "Rf4",
+    "Rf7",
+    "Rxf7+",
+    "Kxf7",
+    "Ke3",
+    "f2",
+    "Kxf2"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "f7",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "e6",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "a5",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "d4",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "e3",
+      "type": "r",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "b"
+}

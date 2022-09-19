@@ -1,0 +1,55 @@
+{
+  "event": "Norway Chess (Blitz)",
+  "site": "Stavanger NOR",
+  "date": "2018.05.27",
+  "eventDate": "2018.05.27",
+  "dateMillis": 1527350400000,
+  "eventDateMillis": 1527350400000,
+  "round": "6.5",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Levon Aronian",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kc7",
+    "a5",
+    "bxa5",
+    "b4",
+    "a6",
+    "b3",
+    "a7",
+    "b2"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "d8",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "a7",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g7",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "b5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "b4",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

@@ -1,0 +1,57 @@
+{
+  "event": "World Championship Candidates",
+  "site": "Berlin GER",
+  "date": "2018.03.23",
+  "eventDate": "2018.03.10",
+  "dateMillis": 1521734400000,
+  "eventDateMillis": 1520611200000,
+  "round": "11",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Alexander Grischuk",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kxf6",
+    "Nd5+",
+    "Kf7",
+    "Ne3",
+    "Kf6",
+    "Nd5+",
+    "Kf7",
+    "Ne3",
+    "g7",
+    "Nf5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "f7",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "f6",
+      "type": "b",
+      "color": "b"
+    },
+    {
+      "square": "g6",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "c3",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "c2",
+      "type": "k",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

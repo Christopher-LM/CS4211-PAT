@@ -1,0 +1,49 @@
+{
+  "event": "IMSA Elite Mind Games (Blitz)",
+  "site": "?",
+  "date": "2017.12.13",
+  "dateMillis": 1513094400000,
+  "eventDateMillis": null,
+  "round": "16.2",
+  "result": "1/2-1/2",
+  "white": "Yu Yangyi",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxe4",
+    "Kb4",
+    "Kxf4"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "c5",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "e4",
+      "type": "n",
+      "color": "b"
+    },
+    {
+      "square": "f4",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "b3",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "d3",
+      "type": "k",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

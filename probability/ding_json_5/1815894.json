@@ -1,0 +1,53 @@
+{
+  "event": "IMSA Elite Mind Games (Rapid)",
+  "site": "Huai'an CHN",
+  "date": "2016.02.27",
+  "eventDate": "2016.02.26",
+  "dateMillis": 1456502400000,
+  "eventDateMillis": 1456416000000,
+  "round": "7.2",
+  "result": "1/2-1/2",
+  "white": "Ruslan Ponomariov",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kxa7",
+    "Kf3",
+    "Kb6",
+    "g2",
+    "Rxg2",
+    "Kxg2"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "a7",
+      "type": "r",
+      "color": "b"
+    },
+    {
+      "square": "b7",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g4",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g3",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "c2",
+      "type": "r",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "w"
+}

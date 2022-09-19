@@ -1,0 +1,67 @@
+{
+  "event": "IMSA Elite Mind Games (Blitz)",
+  "site": "Huai'an CHN",
+  "date": "2016.03.01",
+  "eventDate": "2016.02.28",
+  "dateMillis": 1456761600000,
+  "eventDateMillis": 1456588800000,
+  "round": "25.8",
+  "result": "1-0",
+  "white": "Shakhriyar Mamedyarov",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": false,
+  "isDingBlack": true,
+  "moves": [
+    "Kg5",
+    "Kf3",
+    "f5",
+    "g3",
+    "Kg6",
+    "Kf4",
+    "Kf6",
+    "h4",
+    "Kg6",
+    "h5+",
+    "Kf6",
+    "h6",
+    "Kg6",
+    "h7",
+    "Kxh7",
+    "Kxf5",
+    "Kh6",
+    "g4",
+    "Kg7",
+    "Ke4"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "f6",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "g6",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "g3",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "h3",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "g2",
+      "type": "p",
+      "color": "w"
+    }
+  ],
+  "nextTurn": "b"
+}

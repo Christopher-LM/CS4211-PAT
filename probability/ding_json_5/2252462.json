@@ -1,0 +1,64 @@
+{
+  "event": "Airthings Masters",
+  "site": "Chess24",
+  "eventDate": "2022.02.13",
+  "dateMillis": null,
+  "eventDateMillis": 1644681600000,
+  "round": "2.3",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Hans Moke Niemann",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kxg5",
+    "Kg3",
+    "Rb3+",
+    "Kg2",
+    "Kf4",
+    "Nh3+",
+    "Ke3",
+    "Kg3",
+    "Rb8",
+    "Kg4",
+    "Rb4+",
+    "Kf5",
+    "Rb5+",
+    "Kf6",
+    "Rc5",
+    "Ng5",
+    "Rxg5",
+    "Kxg5"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 2,
+  "boardState": [
+    {
+      "square": "f5",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "g5",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "b4",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "h3",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "f2",
+      "type": "n",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}

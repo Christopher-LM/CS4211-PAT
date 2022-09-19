@@ -1,0 +1,48 @@
+{
+  "event": "Lindores Abbey Stars",
+  "site": "Newburgh SCO",
+  "date": "2019.05.26",
+  "eventDate": "2019.05.25",
+  "dateMillis": 1558800000000,
+  "eventDateMillis": 1558713600000,
+  "round": "6.2",
+  "result": "1/2-1/2",
+  "white": "Ding Liren",
+  "black": "Magnus Carlsen",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": false,
+  "moves": [
+    "Kxf3"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 4,
+  "boardState": [
+    {
+      "square": "h8",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "h7",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "e3",
+      "type": "k",
+      "color": "b"
+    },
+    {
+      "square": "f3",
+      "type": "r",
+      "color": "w"
+    },
+    {
+      "square": "g3",
+      "type": "r",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "b"
+}

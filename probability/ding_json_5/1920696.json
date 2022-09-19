@@ -1,0 +1,52 @@
+{
+  "event": "Norway Chess (Blitz)",
+  "site": "Stavanger NOR",
+  "date": "2018.05.27",
+  "eventDate": "2018.05.27",
+  "dateMillis": 1527350400000,
+  "eventDateMillis": 1527350400000,
+  "round": "2.5",
+  "result": "1/2-1/2",
+  "white": "Maxime Vachier-Lagrave",
+  "black": "Ding Liren",
+  "isDingWin": false,
+  "isDraw": true,
+  "isDingBlack": true,
+  "moves": [
+    "Kb4",
+    "Kb2",
+    "f8=Q",
+    "Bxf8+",
+    "Kxa4"
+  ],
+  "statePieceCount": 5,
+  "endPieceCount": 3,
+  "boardState": [
+    {
+      "square": "f7",
+      "type": "p",
+      "color": "w"
+    },
+    {
+      "square": "g7",
+      "type": "b",
+      "color": "b"
+    },
+    {
+      "square": "a4",
+      "type": "p",
+      "color": "b"
+    },
+    {
+      "square": "c4",
+      "type": "k",
+      "color": "w"
+    },
+    {
+      "square": "b1",
+      "type": "k",
+      "color": "b"
+    }
+  ],
+  "nextTurn": "w"
+}
