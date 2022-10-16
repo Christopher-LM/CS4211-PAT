@@ -1,34 +1,34 @@
 ﻿//@@Chess@@
 
 // Possible pieces on the chess board
-enum{k, q, r, n, b, p}; //king, queen, rook, knight, bishop, pawn
+enum{K, Q, R, N, B, P}; //king, queen, rook, knight, bishop, pawn
 var SCOREMAP = [0, 9, 5, 3, 3, 1]; //mapped to k, q, r, n, b, p. King: 0, Queen: 9, Rook: 5, Bishop: 3, Knight: 3, Pawn: 1
-enum{carlsen, ding, neutral, na, lessthan5}; //turn
-
+enum{CARLSEN, DING, DRAW, LESS_THAN_5, NO_PLAYER}; //turn
+enum{WINNING_CARLSEN, WINNING_DING, WINNING_NEUTRAL}; // Winning State
 
 // Constants
-var PIECE_TYPES = [k, q, r, n, b, p];
+var PIECE_TYPES = [K, Q, R, N, B, P];
 var PIECE_TYPE_COUNT = 6;
 
 // Start of Input Section
-var num_pieces = 5;
+var carlsen_pieces = [K, P];
+var num_carlsen_pieces = 2;
 
-var carlsenpieces = [k, p];
-var num_carlsenpieces = 2;
+var ding_pieces = [K, P, B];
+var num_ding_pieces = 3;
 
-var dingpieces = [k, p, b];
-var num_dingpieces = 3;
+var num_pieces = num_carlsen_pieces + num_ding_pieces;
 // End of Input Section
 
-var carlsenscore = 0;
-var dingscore = 0;
-var nextturn = na; // No turn assigned, this will be set in the init function
-var winning = neutral; // Neutral Board, this will be set in the init function
-var won = na;
+var carlsen_score = 0;
+var ding_score = 0;
+var next_turn = NO_PLAYER; // No turn assigned, this will be set in the init function
+var winning = WINNING_NEUTRAL; // Neutral Board, this will be set in the init function
+var won = NO_PLAYER;
 
 // Limiter for guaranteed end
 // Note that there is a 50-move tie rule in Chess, but for now it is limited to only 10
-var turn_limit = 7;
+var TURN_LIMIT = 7;
 var turn_count = 0;
 
 // Probabilities of moving a piece
@@ -64,18 +64,18 @@ var move_probs[2][2][3][6] = [
 
 var prob_to_capture = [1, 1, 1, 1, 1, 1]; // If opp piece does not exist, set to 0
 
-EliminateMoveProbs(num_board_pieces, player) = elimiateMoveProbs{
+EliminateMoveProbs(num_board_pieces, player) = eliminateMoveProbs.player{
 	var type_index = 0;
 	
 	var num_player_pieces;
 	var player_pieces_arr;
-	if (player == carlsen) {
-		num_player_pieces = num_carlsenpieces;
-		player_pieces_arr = carlsenpieces;
+	if (player == CARLSEN) {
+		num_player_pieces = num_carlsen_pieces;
+		player_pieces_arr = carlsen_pieces;
 
-	} else if (player == ding) {
-		num_player_pieces = num_dingpieces;
-		player_pieces_arr = dingpieces;
+	} else if (player == DING) {
+		num_player_pieces = num_ding_pieces;
+		player_pieces_arr = ding_pieces;
 
 	} else {
 		type_index = 6; // We make it not run at all
@@ -110,238 +110,241 @@ EliminateMoveProbs(num_board_pieces, player) = elimiateMoveProbs{
 
 EndTurn = CalcCarlsenScore;CalcDingScore;UpdateWinning;Turn;
 
-CalcCarlsenScore = calccarlsenscore{
+CalcCarlsenScore = calcCarlsenScore{
+	carlsen_score = 0;
+	
 	var index = 0;
-	while (index < num_carlsenpieces) {
-	carlsenscore = carlsenscore + SCOREMAP[carlsenpieces[index]];
-	index = index+1;
+	while (index < num_carlsen_pieces) {
+		carlsen_score = carlsen_score + SCOREMAP[carlsen_pieces[index]];
+	index = index + 1;
 	};
 } -> Skip;
 
-CalcDingScore = calcdingscore{
+CalcDingScore = calcDingScore{
+	ding_score = 0;
+	
 	var index = 0;
-	while (index < num_dingpieces) {
-	dingscore = dingscore + SCOREMAP[dingpieces[index]];
-	index = index+1;
+	while (index < num_ding_pieces) {
+		ding_score = ding_score + SCOREMAP[ding_pieces[index]];
+		index = index + 1;
 	};
 } -> Skip;
 
-UpdateWinning = updatewinning{
-	if (carlsenscore > dingscore) {
-		winning = 0
-	};
-	if (carlsenscore < dingscore) {
-		winning = 1
-	};
-	if (carlsenscore == dingscore) {
-		winning = -1 //Neutral
-	};
+UpdateWinning = updateWinning{
+	if (carlsen_score > ding_score) {
+		winning = WINNING_CARLSEN;
+	} else if (carlsen_score < ding_score) {
+		winning = WINNING_DING;
+	} else {
+		winning = WINNING_NEUTRAL;
+	}	
 } -> Skip;
 
-WhoStartFirst = []i:{carlsen,ding}@ Move1st{nextturn = i} -> Skip;
-Game = WhoStartFirst; EliminateMoveProbs(num_pieces, carlsen); EliminateMoveProbs(num_pieces, ding); Turn; //Randomised start
-Turn = [turn_count <= turn_limit && won == na && nextturn == carlsen]{nextturn=ding;turn_count++} -> CarlsenMove
+SelectStartingPlayer = []i:{CARLSEN, DING}@ selectStartingPlayer{next_turn = i} -> Skip; //Randomised start
+Game = SelectStartingPlayer; EliminateMoveProbs(num_pieces, CARLSEN); EliminateMoveProbs(num_pieces, DING); Turn;
+
+Turn = [turn_count <= TURN_LIMIT && won == NO_PLAYER && next_turn == CARLSEN]{next_turn=DING; turn_count++} -> CarlsenMove
     []
-       [turn_count <= turn_limit && won == na && nextturn == ding]{nextturn=carlsen;turn_count++} -> DingMove
+       [turn_count <= TURN_LIMIT && won == NO_PLAYER && next_turn == DING]{next_turn=CARLSEN; turn_count++} -> DingMove
     []
-       [won != na || turn_count > turn_limit] GameOver -> Skip
+       [won != NO_PLAYER || turn_count > TURN_LIMIT] GameOver -> Skip
     ;
 
-CarlsenMove = [won == na && num_pieces == 5 && winning == carlsen]CarlsenWinning5 -> Carlsen_Winning5Move
+CarlsenMove = [won == NO_PLAYER && num_pieces == 5 && winning == WINNING_CARLSEN]CarlsenWinning5 -> Carlsen_Winning5Move
   []
-[won == na && num_pieces == 5 && winning == ding]CarlsenLosing5 -> Carlsen_Losing5Move
+[won == NO_PLAYER && num_pieces == 5 && winning == WINNING_DING]CarlsenLosing5 -> Carlsen_Losing5Move
   [] 
-[won == na && num_pieces == 5 && winning == neutral]CarlsenNeutral5 -> Carlsen_Neutral5Move;
+[won == NO_PLAYER && num_pieces == 5 && winning == WINNING_NEUTRAL]CarlsenNeutral5 -> Carlsen_Neutral5Move;
 
-DingMove = [won == na && num_pieces == 5 && winning == ding]DingWinning5 -> Ding_Winning5Move
+DingMove = [won == NO_PLAYER && num_pieces == 5 && winning == WINNING_DING]DingWinning5 -> Ding_Winning5Move
   [] 
-[won == na && num_pieces == 5 && winning == carlsen]DingLosing5 -> Ding_Losing5Move
+[won == NO_PLAYER && num_pieces == 5 && winning == WINNING_CARLSEN]DingLosing5 -> Ding_Losing5Move
   [] 
-[won == na && num_pieces == 5 && winning == neutral]DingNeutral5 -> Ding_Neutral5Move;
+[won == NO_PLAYER && num_pieces == 5 && winning == WINNING_NEUTRAL]DingNeutral5 -> Ding_Neutral5Move;
 
 // TODO: Complete modelling for num_pieces > 5 and DingMove
 
-#define CarlsenWin won == carlsen;
+#define CarlsenWin won == CARLSEN;
 #assert Game reaches CarlsenWin with prob;
 
-#define DingWin won == ding;
+#define DingWin won == DING;
 #assert Game reaches DingWin with prob;
 
-#define LessThan5 won == lessthan5;
+#define LessThan5 won == LESS_THAN_5;
 #assert Game reaches LessThan5 with prob;
 
-#define Draw won == neutral;
+#define Draw won == DRAW;
 #assert Game reaches Draw with prob;
 
-#define TurnLimitReached won == na && turn_count > turn_limit;
+#define TurnLimitReached won == NO_PLAYER && turn_count > TURN_LIMIT;
 #assert Game reaches TurnLimitReached with prob;
 
 advance(i) = EndTurn;
-capture(i) = setCapture.i{won=lessthan5} -> EndTurn;
-endWin(i) = setWinner.i{won=i} -> EndTurn;
+capture(i) = setCapture.i{won = LESS_THAN_5} -> EndTurn;
+endWin(i) = setWinner.i{won = i} -> EndTurn;
 endLose(i) = setLoser.i{
-	if (i == ding) {
-	  won = carlsen
-	} else if (i == carlsen) {
-	  won = ding
+	if (i == DING) {
+	  won = CARLSEN
+	} else if (i == CARLSEN) {
+	  won = DING
 	};
 } -> EndTurn;
-endDraw(i) = setDraw.i{won=neutral} -> EndTurn;
+endDraw(i) = setDraw.i{won = DRAW} -> EndTurn;
 
 //////////////////////////////////////// CARLSEN START ////////////////////////////////////////////
 
 Carlsen_Winning5K = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Winning5Q = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Winning5R = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Winning5N = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Winning5B = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Winning5P = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Losing5K = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Losing5Q = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Losing5R = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Losing5N = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Losing5B = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Losing5P = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Neutral5K = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Neutral5Q = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Neutral5R = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Neutral5N = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Neutral5B = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 Carlsen_Neutral5P = pcase {
-	1:advance(carlsen)
-	1:capture(carlsen) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(carlsen) //Checkmate/Opp forfeit
-	1:endLose(carlsen) //Self forfeit
-	1:endDraw(carlsen) //Declare Draw
+	1:advance(CARLSEN)
+	1:capture(CARLSEN) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(CARLSEN) //Checkmate/Opp forfeit
+	1:endLose(CARLSEN) //Self forfeit
+	1:endDraw(CARLSEN) //Declare Draw
 };
 
 
 Carlsen_Winning5Move = pcase {
-	move_probs[0][carlsen][0][0]: MoveK -> Carlsen_Winning5K  
-	move_probs[0][carlsen][0][1]: MoveQ -> Carlsen_Winning5Q
-	move_probs[0][carlsen][0][2]: MoveR -> Carlsen_Winning5R
-	move_probs[0][carlsen][0][3]: MoveN -> Carlsen_Winning5N
-	move_probs[0][carlsen][0][4]: MoveB -> Carlsen_Winning5B
-	move_probs[0][carlsen][0][5]: MoveP -> Carlsen_Winning5P
+	move_probs[0][CARLSEN][0][0]: MoveK -> Carlsen_Winning5K  
+	move_probs[0][CARLSEN][0][1]: MoveQ -> Carlsen_Winning5Q
+	move_probs[0][CARLSEN][0][2]: MoveR -> Carlsen_Winning5R
+	move_probs[0][CARLSEN][0][3]: MoveN -> Carlsen_Winning5N
+	move_probs[0][CARLSEN][0][4]: MoveB -> Carlsen_Winning5B
+	move_probs[0][CARLSEN][0][5]: MoveP -> Carlsen_Winning5P
 };
 
 Carlsen_Losing5Move = pcase {
@@ -365,147 +368,147 @@ Carlsen_Neutral5Move = pcase {
 //////////////////////////////////////////// DING START //////////////////////////////////////
 
 Ding_Winning5K = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Winning5Q = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Winning5R = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Winning5N = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Winning5B = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Winning5P = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Losing5K = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Losing5Q = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Losing5R = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Losing5N = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Losing5B = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Losing5P = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Neutral5K = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Neutral5Q = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Neutral5R = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Neutral5N = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Neutral5B = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Neutral5P = pcase {
-	1:advance(ding)
-	1:capture(ding) //This will end the game, so won't model 4 or less pieces (too few data)
-	1:endWin(ding) //Checkmate/Opp forfeit
-	1:endLose(ding) //Self forfeit
-	1:endDraw(ding) //Declare Draw
+	1:advance(DING)
+	1:capture(DING) //This will end the game, so won't model 4 or less pieces (too few data)
+	1:endWin(DING) //Checkmate/Opp forfeit
+	1:endLose(DING) //Self forfeit
+	1:endDraw(DING) //Declare Draw
 };
 
 Ding_Winning5Move = pcase {
