@@ -42,67 +42,70 @@ var turn_count = 0;
 
 var prob_to_capture = [1, 1, 1, 1, 1, 1]; // If opp piece does not exist, set to 0
 
-EliminateMoveProbsFor(num_board_pieces, player) = eliminateMoves.player{
-	var type_index = 0;
+EliminateMoveProbs(num_board_pieces) = eliminateMoves.num_board_pieces{
+	var players = [CARLSEN, DING];
+	var i = 0;
 	
-	var num_player_pieces;
-	var player_pieces_arr;
-	if (player == CARLSEN) {
-		num_player_pieces = num_carlsen_pieces;
-		player_pieces_arr = carlsen_pieces;
-
-	} else if (player == DING) {
-		num_player_pieces = num_ding_pieces;
-		player_pieces_arr = ding_pieces;
-
-	} else {
-		type_index = 6; // We make it not run at all
-	};
+	while (i < 2) {
+		var player = players[i];
+		var type_index = 0;
+		var num_player_pieces;
+		var player_pieces_arr;
+		if (player == CARLSEN) {
+			num_player_pieces = num_carlsen_pieces;
+			player_pieces_arr = carlsen_pieces;
 	
-	while (type_index < 6) {
-		var target_piece_type = PIECE_TYPES[type_index];
-		var has_piece = false;
-		var player_piece_index = 0;
-
-		while (player_piece_index < num_player_pieces) {
-			var player_piece = player_pieces_arr[player_piece_index];
-
-			if (player_piece == target_piece_type) {
-				has_piece = true;
-				player_piece_index = num_player_pieces; //Effectively a break
+		} else if (player == DING) {
+			num_player_pieces = num_ding_pieces;
+			player_pieces_arr = ding_pieces;
+	
+		} else {
+			type_index = 6; // We make it not run at all
+		};
+		
+		while (type_index < 6) {
+			var target_piece_type = PIECE_TYPES[type_index];
+			var has_piece = false;
+			var player_piece_index = 0;
+	
+			while (player_piece_index < num_player_pieces) {
+				var player_piece = player_pieces_arr[player_piece_index];
+	
+				if (player_piece == target_piece_type) {
+					has_piece = true;
+					player_piece_index = num_player_pieces; //Effectively a break
+				};
+	
+				player_piece_index = player_piece_index + 1;
 			};
-
-			player_piece_index = player_piece_index + 1;
-		};
-
-		if (!has_piece) {
-			var array_piece_count_index = num_board_pieces - MIN_PIECES;
-			move_probs[array_piece_count_index][player][0][target_piece_type] = 0;
-			move_probs[array_piece_count_index][player][1][target_piece_type] = 0;
-			move_probs[array_piece_count_index][player][2][target_piece_type] = 0;
-		};
-
-		type_index = type_index + 1;
-	};
+	
+			if (!has_piece) {
+				var array_piece_count_index = num_board_pieces - MIN_PIECES;
+				move_probs[array_piece_count_index][player][0][target_piece_type] = 0;
+				move_probs[array_piece_count_index][player][1][target_piece_type] = 0;
+				move_probs[array_piece_count_index][player][2][target_piece_type] = 0;
+			};
+	
+			type_index = type_index + 1;
+		}
+		i++;
+	}
 } -> Skip;
 
 
-EndTurn = CalcCarlsenScore;CalcDingScore;UpdateWinning;Turn;
+EndTurn = CalcScore;UpdateWinning;Turn;
 
-CalcCarlsenScore = calcCarlsenScore{
+CalcScore = calcScore{
 	carlsen_score = 0;
+	ding_score = 0;
 	
 	var index = 0;
 	while (index < num_carlsen_pieces) {
 		carlsen_score = carlsen_score + SCOREMAP[carlsen_pieces[index]];
 	index = index + 1;
 	};
-} -> Skip;
-
-CalcDingScore = calcDingScore{
-	ding_score = 0;
 	
-	var index = 0;
+	index = 0;
 	while (index < num_ding_pieces) {
 		ding_score = ding_score + SCOREMAP[ding_pieces[index]];
 		index = index + 1;
@@ -120,7 +123,7 @@ UpdateWinning = updateWinning{
 } -> Skip;
 
 SelectStartingPlayer = []i:{CARLSEN, DING}@ selectStartingPlayer{next_turn = i} -> Skip; //Randomised start
-Game = SelectStartingPlayer; EliminateMoveProbsFor(num_pieces, CARLSEN); EliminateMoveProbsFor(num_pieces, DING); Turn;
+Game = SelectStartingPlayer; EliminateMoveProbs(num_pieces); EndTurn;
 
 Turn = [turn_count <= TURN_LIMIT && won == NO_PLAYER && next_turn == CARLSEN]updateTurn{next_turn=DING; turn_count++} -> PlayerMove(CARLSEN)
     []
