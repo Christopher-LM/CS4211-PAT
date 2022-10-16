@@ -3,9 +3,12 @@
 // Possible pieces on the chess board
 enum{k, q, r, n, b, p}; //king, queen, rook, knight, bishop, pawn
 var SCOREMAP = [0, 9, 5, 3, 3, 1]; //mapped to k, q, r, n, b, p. King: 0, Queen: 9, Rook: 5, Bishop: 3, Knight: 3, Pawn: 1
-enum{carlsen, ding, neutral, na, lessthan5}; //turn 
+enum{carlsen, ding, neutral, na, lessthan5}; //turn
 
-var all_pieces = [k, q, r, n, b, p];
+
+// Constants
+var PIECE_TYPES = [k, q, r, n, b, p];
+var PIECE_TYPE_COUNT = 6;
 
 // Start of Input Section
 var num_pieces = 5;
@@ -19,8 +22,8 @@ var num_dingpieces = 3;
 
 var carlsenscore = 0;
 var dingscore = 0;
-var nextturn = na; // No turn assigned
-var winning = neutral; // No one winning at first
+var nextturn = na; // No turn assigned, this will be set in the init function
+var winning = neutral; // Neutral Board, this will be set in the init function
 var won = na;
 
 // Limiter for guaranteed end
@@ -28,9 +31,10 @@ var won = na;
 var turn_limit = 7;
 var turn_count = 0;
 
-// Probabilities
-
-var probs[2][2][3][6] = [
+// Probabilities of moving a piece
+// Suppose P = MOVE_PROBS[x][y][z][w]
+// P is the probability of moving piece PIECE_TYPES[w] given winning state STATE[z] for PLAYER[y] when there are x + 5 pieces on the board
+var move_probs[2][2][3][6] = [
 	// 5 moves
 	
 	// Carlsen 5
@@ -60,40 +64,49 @@ var probs[2][2][3][6] = [
 
 var prob_to_capture = [1, 1, 1, 1, 1, 1]; // If opp piece does not exist, set to 0
 
-SetProbToZero(NumPieces, Player) = setprobtozero{
-	var index = 0;
+EliminateMoveProbs(num_board_pieces, player) = elimiateMoveProbs{
+	var type_index = 0;
+	
 	var num_player_pieces;
-	var pieces_array;
-	if (Player == carlsen) {
+	var player_pieces_arr;
+	if (player == carlsen) {
 		num_player_pieces = num_carlsenpieces;
-		pieces_array = carlsenpieces;
-	};
-	if (Player == ding) {
+		player_pieces_arr = carlsenpieces;
+
+	} else if (player == ding) {
 		num_player_pieces = num_dingpieces;
-		pieces_array = dingpieces;
+		player_pieces_arr = dingpieces;
+
+	} else {
+		type_index = 6; // We make it not run at all
 	};
-	while (index < 6) {
-		var PlayerIndex = 0;
-		var piece = all_pieces[index];
+	
+	while (type_index < 6) {
+		var target_piece_type = PIECE_TYPES[type_index];
 		var has_piece = false;
-		while (PlayerIndex < num_player_pieces) {
-			var player_piece = pieces_array[PlayerIndex];
-			if (player_piece == piece) {
+		var player_piece_index = 0;
+
+		while (player_piece_index < num_player_pieces) {
+			var player_piece = player_pieces_arr[player_piece_index];
+
+			if (player_piece == target_piece_type) {
 				has_piece = true;
+				player_piece_index = num_player_pieces; //Effectively a break
 			};
-			PlayerIndex = PlayerIndex + 1;
+
+			player_piece_index = player_piece_index + 1;
 		};
+
 		if (!has_piece) {
-			probs[NumPieces - 5][Player][0][piece] = 0;
-			probs[NumPieces - 5][Player][1][piece] = 0;
-			probs[NumPieces - 5][Player][2][piece] = 0;
+			var array_piece_count_index = num_board_pieces - 5;
+			move_probs[array_piece_count_index][player][0][target_piece_type] = 0;
+			move_probs[array_piece_count_index][player][1][target_piece_type] = 0;
+			move_probs[array_piece_count_index][player][2][target_piece_type] = 0;
 		};
-		index = index + 1;
+
+		type_index = type_index + 1;
 	};
-
 } -> Skip;
-
-
 
 EndTurn = CalcCarlsenScore;CalcDingScore;UpdateWinning;Turn;
 
@@ -126,7 +139,7 @@ UpdateWinning = updatewinning{
 } -> Skip;
 
 WhoStartFirst = []i:{carlsen,ding}@ Move1st{nextturn = i} -> Skip;
-Game = WhoStartFirst; SetProbToZero(num_pieces, carlsen); SetProbToZero(num_pieces, ding); Turn; //Randomised start
+Game = WhoStartFirst; EliminateMoveProbs(num_pieces, carlsen); EliminateMoveProbs(num_pieces, ding); Turn; //Randomised start
 Turn = [turn_count <= turn_limit && won == na && nextturn == carlsen]{nextturn=ding;turn_count++} -> CarlsenMove
     []
        [turn_count <= turn_limit && won == na && nextturn == ding]{nextturn=carlsen;turn_count++} -> DingMove
@@ -323,12 +336,12 @@ Carlsen_Neutral5P = pcase {
 
 
 Carlsen_Winning5Move = pcase {
-	probs[0][carlsen][0][0]: MoveK -> Carlsen_Winning5K  
-	probs[0][carlsen][0][1]: MoveQ -> Carlsen_Winning5Q
-	probs[0][carlsen][0][2]: MoveR -> Carlsen_Winning5R
-	probs[0][carlsen][0][3]: MoveN -> Carlsen_Winning5N
-	probs[0][carlsen][0][4]: MoveB -> Carlsen_Winning5B
-	probs[0][carlsen][0][5]: MoveP -> Carlsen_Winning5P
+	move_probs[0][carlsen][0][0]: MoveK -> Carlsen_Winning5K  
+	move_probs[0][carlsen][0][1]: MoveQ -> Carlsen_Winning5Q
+	move_probs[0][carlsen][0][2]: MoveR -> Carlsen_Winning5R
+	move_probs[0][carlsen][0][3]: MoveN -> Carlsen_Winning5N
+	move_probs[0][carlsen][0][4]: MoveB -> Carlsen_Winning5B
+	move_probs[0][carlsen][0][5]: MoveP -> Carlsen_Winning5P
 };
 
 Carlsen_Losing5Move = pcase {
