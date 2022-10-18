@@ -285,7 +285,9 @@ ExecuteCapture(player, piece) = performCapture.player.piece{
 			}
 			
 			num_pieces--;
-			if (num_pieces < MIN_PIECES) {
+			if (piece == K) {
+				won = player;
+			} else if (num_pieces < MIN_PIECES) {
 				won = LESS_THAN_5;
 			}
 			piece_index = num_opp_pieces;
