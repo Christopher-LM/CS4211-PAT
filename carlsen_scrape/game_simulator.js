@@ -137,8 +137,9 @@ const y = games.forEach(x => {
     }
   } catch (err) {
     console.log(`Parsing error, skipping ${x}`)
+    errorCount++;
   }
-  errorCount++;
+  
 });
 
 console.log(`Done with Success: ${successCount}, Skip: ${skipCount}, Error: ${errorCount}`);
