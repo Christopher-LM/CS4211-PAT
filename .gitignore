@@ -1,2 +1,4 @@
 ding_scrape/node_modules
 carlsen_scrape/node_modules
+action_probs/json_*
+action_probs/node_modules
