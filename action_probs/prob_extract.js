@@ -162,7 +162,7 @@ for (let i = 0; i < 3; i++) {
 for (let i = 0; i < 3; i++) {
   console.log(sectionHeaders[i]);
   for (let j = 0; j < 6; j++) {
-    const line = counter[i][j].map((x) => `${x}`).map((x) => x.padStart(2, ' ')).join(', ');
+    const line = counter[i][j].map((x) => `${x}`).map((x) => x.padEnd(2, ' ')).join(', ');
     const isFinal = i === 2 && j === 5;
 
     console.log(line + (isFinal ? '' : ',') + pieceSuffix[j]);
