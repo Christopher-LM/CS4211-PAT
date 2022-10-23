@@ -111,7 +111,7 @@ const buildJson = (obj) => {
     black: isCarlsenBlack ? 'Magnus Carlsen' : game.tags.Black,
     isCarlsenWin: carlsenWin,
     isDraw: draw,
-    isCarlsenWin,
+    isCarlsenBlack,
     moves: movesLeft,
     statePieceCount: pieceCount,
     endPieceCount,
