@@ -1,0 +1,16 @@
+{
+  "name": "cs4211-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scraper.js",
+  "scripts": {
+    "run-single": "node prob_extract_simple.js",
+    "run-full": "node prob_extract.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chess.js": "^1.0.0-alpha.0"
+  }
+}

@@ -44,10 +44,10 @@ const buildJson = (obj) => {
 
   let result = 0;
   
-  const isDingWhite = names.has(game.tags.White.toLowerCase());
-  const isDingBlack = names.has(game.tags.Black.toLowerCase());
+  const isCarlsenWhite = names.has(game.tags.White.toLowerCase());
+  const isCarlsenBlack = names.has(game.tags.Black.toLowerCase());
 
-  if (!isDingBlack && !isDingWhite) {
+  if (!isCarlsenWhite && !isCarlsenBlack) {
     console.log('Not white or black');
     return undefined;
   }
@@ -64,7 +64,7 @@ const buildJson = (obj) => {
     console.log("Unknown result");
   }
   
-  const dingWin = (result === 1 && isDingBlack) || (result === 2 && isDingWhite);
+  const carlsenWin = (result === 1 && isCarlsenBlack) || (result === 2 && isCarlsenWhite);
   const draw = result === 3;
   const moves = game.moves;
 
@@ -84,6 +84,7 @@ const buildJson = (obj) => {
   }
 
   const boardState = convertBoard(board.board());
+  const nextTurn = board.turn();
 
   const movesLeft = [];
   for (; i < moves.length; i++) {
@@ -106,15 +107,16 @@ const buildJson = (obj) => {
     eventDateMillis: new Date(game.tags.EventDate.year, game.tags.EventDate.month - 1, game.tags.EventDate.day).getTime(),
     round: game.tags.Round,
     result: game.tags.Result,
-    white: isDingWhite ? 'Magnus Carlsen' : game.tags.White,
-    black: isDingBlack ? 'Magnus Carlsen' : game.tags.Black,
-    isDingWin: dingWin,
+    white: isCarlsenWhite ? 'Magnus Carlsen' : game.tags.White,
+    black: isCarlsenBlack ? 'Magnus Carlsen' : game.tags.Black,
+    isCarlsenWin: carlsenWin,
     isDraw: draw,
-    isDingBlack,
+    isCarlsenBlack,
     moves: movesLeft,
     statePieceCount: pieceCount,
     endPieceCount,
     boardState,
+    nextTurn,
   };
 }
 
@@ -135,8 +137,9 @@ const y = games.forEach(x => {
     }
   } catch (err) {
     console.log(`Parsing error, skipping ${x}`)
+    errorCount++;
   }
-  errorCount++;
+  
 });
 
 console.log(`Done with Success: ${successCount}, Skip: ${skipCount}, Error: ${errorCount}`);
