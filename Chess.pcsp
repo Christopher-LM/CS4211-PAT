@@ -3,13 +3,14 @@
 // Import probabilities
 #include "ChessMoveProbabilities.pcsp";
 
+//////////////////////////////////////// START OF DEFINITIONS /////////////////////////////////////////
 // Possible pieces on the chess board
 // PIECE enum
 enum{K, Q, R, N, B, P}; //king, queen, rook, knight, bishop, pawn
 var SCOREMAP = [0, 9, 5, 3, 3, 1]; //mapped to k, q, r, n, b, p. King: 0, Queen: 9, Rook: 5, Bishop: 3, Knight: 3, Pawn: 1
 
 // TURN / WINNER / PLAYER enum
-enum{CARLSEN, DING, DRAW, LESS_THAN_5, NO_PLAYER};
+enum{CARLSEN, DING, DRAW, LESS_THAN_MIN_PIECES, NO_PLAYER};
 
 // WINNING enum (Winning State)
 enum{WINNING_CARLSEN, WINNING_DING, WINNING_NEUTRAL};
@@ -22,12 +23,16 @@ var PIECE_TYPES = [K, Q, R, N, B, P];
 #define PIECE_TYPE_COUNT 6;
 #define MIN_PIECES 5;
 
-// Start of Input Section
-var carlsen_pieces = [K, P, P, P];
-var num_carlsen_pieces = 4;
+// Limiter for guaranteed end
+// Note that there is a 50-move tie rule in Chess, but for now it is limited to only 10
+#define TURN_LIMIT 10;
 
-var ding_pieces = [K, P, B];
-var num_ding_pieces = 3;
+// Start of Input Section
+var carlsen_pieces = [K, P, P, P, Q];
+var num_carlsen_pieces = 5;
+
+var ding_pieces = [K, P, B, Q, P];
+var num_ding_pieces = 5;
 
 var num_pieces = num_carlsen_pieces + num_ding_pieces;
 // End of Input Section
@@ -38,12 +43,11 @@ var next_turn = NO_PLAYER; // No turn assigned, this will be set in the init fun
 var winning = WINNING_NEUTRAL; // Neutral Board, this will be set in the init function
 var won = NO_PLAYER;
 
-// Limiter for guaranteed end
-// Note that there is a 50-move tie rule in Chess, but for now it is limited to only 10
-var TURN_LIMIT = 7;
 var turn_count = 0;
 
 var prob_to_capture = [1, 1, 1, 1, 1, 1]; // If opp piece does not exist, set to 0
+
+//////////////////////////////////////// START OF PROBABILITY FUNCTIONS /////////////////////////////////////////
 
 EliminateMoveProbs(num_board_pieces) = eliminateMoves.num_board_pieces{
 	var players = [CARLSEN, DING];
@@ -145,6 +149,7 @@ EliminateCaptureProbs(num_board_pieces) = eliminateCaptures.num_board_pieces{
 	}
 } -> Skip;
 
+//////////////////////////////////////// START OF GAME PROCESSES /////////////////////////////////////////
 
 EndTurn = CalcScore; UpdateWinning; Turn;
 
@@ -195,23 +200,6 @@ PlayerMove(player) = EliminateMoveProbs(num_pieces); EliminateCaptureProbs(num_p
 	)
 );
 
-// TODO: Complete modelling for num_pieces > 5 and DingMove
-
-#define CarlsenWin won == CARLSEN;
-#assert Game reaches CarlsenWin with prob;
-
-#define DingWin won == DING;
-#assert Game reaches DingWin with prob;
-
-#define LessThan5 won == LESS_THAN_5;
-#assert Game reaches LessThan5 with prob;
-
-#define Draw won == DRAW;
-#assert Game reaches Draw with prob;
-
-#define TurnLimitReached won == NO_PLAYER && turn_count > TURN_LIMIT;
-#assert Game reaches TurnLimitReached with prob;
-
 Advance(i) = EndTurn;
 EndWin(i) = winner.i{won = i} -> EndTurn;
 EndLose(i) = loser.i{
@@ -239,16 +227,16 @@ MovePiece(board_piece_count, player, win_state, piece) = (
 );
 
 ExecuteMovePieceCarlsen(board_piece_count, win_state, piece) = movePieceCarlsen.board_piece_count.win_state.piece -> pcase{
-	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][0]: Advance(CARLSEN)
-	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][1]: Capture(CARLSEN, board_piece_count, win_state) //This will end the game, so won't model 4 or less pieces (too few data)
+	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][0]: Advance(CARLSEN) //Advance piece (no capture)
+	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][1]: Capture(CARLSEN, board_piece_count, win_state) //This will end the game if board_piece_count == 5, so won't model 4 or less pieces (too few data)
 	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][2]: EndWin(CARLSEN) //Checkmate/Opp forfeit
 	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][3]: EndLose(CARLSEN) //Self forfeit
 	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][4]: EndDraw(CARLSEN) //Declare Draw
 };
 
 ExecuteMovePieceDing(board_piece_count, win_state, piece) = movePieceDing.board_piece_count.win_state.piece -> pcase{
-	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][0]: Advance(DING)
-	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][1]: Capture(DING, board_piece_count, win_state) //This will end the game, so won't model 4 or less pieces (too few data)
+	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][0]: Advance(DING) //Advance piece (no capture)
+	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][1]: Capture(DING, board_piece_count, win_state) //This will end the game if board_piece_count == 5, so won't model 4 or less pieces (too few data)
 	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][2]: EndWin(DING) //Checkmate/Opp forfeit
 	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][3]: EndLose(DING) //Self forfeit
 	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][4]: EndDraw(DING) //Declare Draw
@@ -291,7 +279,7 @@ ExecuteCapture(player, piece) = performCapture.player.piece{
 			if (piece == K) {
 				won = player;
 			} else if (num_pieces < MIN_PIECES) {
-				won = LESS_THAN_5;
+				won = LESS_THAN_MIN_PIECES;
 			}
 			piece_index = num_opp_pieces;
 		}
@@ -299,3 +287,21 @@ ExecuteCapture(player, piece) = performCapture.player.piece{
 	}
 	turn_count = 0;
 } -> EndTurn;
+
+//////////////////////////////////////// START OF ASSERTIONS /////////////////////////////////////////
+#assert Game deadlockfree;
+
+#define CarlsenWin won == CARLSEN;
+#assert Game reaches CarlsenWin with prob;
+
+#define DingWin won == DING;
+#assert Game reaches DingWin with prob;
+
+#define LessThanMinPieces won == LESS_THAN_MIN_PIECES;
+#assert Game reaches LessThanMinPieces with prob;
+
+#define Draw won == DRAW;
+#assert Game reaches Draw with prob;
+
+#define TurnLimitReached won == NO_PLAYER && turn_count > TURN_LIMIT;
+#assert Game reaches TurnLimitReached with prob;
