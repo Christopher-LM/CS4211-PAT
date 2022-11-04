@@ -28,10 +28,10 @@ var PIECE_TYPES = [K, Q, R, N, B, P];
 #define TURN_LIMIT 10;
 
 // Start of Input Section
-var carlsen_pieces = [K, P, P, P, Q];
-var num_carlsen_pieces = 5;
+var carlsen_pieces = [K, P, P, B];
+var num_carlsen_pieces = 4;
 
-var ding_pieces = [K, P, B, Q, P];
+var ding_pieces = [K, P, P, P, P];
 var num_ding_pieces = 5;
 
 var num_pieces = num_carlsen_pieces + num_ding_pieces;
@@ -45,107 +45,70 @@ var won = NO_PLAYER;
 
 var turn_count = 0;
 
-var prob_to_capture = [1, 1, 1, 1, 1, 1]; // If opp piece does not exist, set to 0
-
 //////////////////////////////////////// START OF PROBABILITY FUNCTIONS /////////////////////////////////////////
 
-EliminateMoveProbs(num_board_pieces) = eliminateMoves.num_board_pieces{
-	var players = [CARLSEN, DING];
-	var i = 0;
-	
-	while (i < 2) {
-		var player = players[i];
-		var type_index = 0;
-		var num_player_pieces;
-		var player_pieces_arr;
-		if (player == CARLSEN) {
-			num_player_pieces = num_carlsen_pieces;
-			player_pieces_arr = carlsen_pieces;
-	
-		} else if (player == DING) {
-			num_player_pieces = num_ding_pieces;
-			player_pieces_arr = ding_pieces;
-	
-		} else {
-			type_index = 6; // We make it not run at all
+#define CARLSEN_PIECE_ACT(w,x,y,z) CARLSEN_PIECE_ACTION_PROBS[w - MIN_PIECES][x][y][z];
+#define DING_PIECE_ACT(w,x,y,z) DING_PIECE_ACTION_PROBS[w - MIN_PIECES][x][y][z];
+#define getCaptureProb(w,x,y,z) capture_probs[w - MIN_PIECES][x][y][z];
+#define getMoveProb(w,x,y,z) move_probs[w - MIN_PIECES][x][y][z];
+
+EliminateProbs(num_board_pieces) = EliminateMoveProbs(num_board_pieces, CARLSEN, carlsen_pieces, num_carlsen_pieces);
+								   EliminateCaptureProbs(num_board_pieces, CARLSEN, ding_pieces, num_ding_pieces);
+								   EliminateMoveProbs(num_board_pieces, DING, ding_pieces, num_ding_pieces);
+								   EliminateCaptureProbs(num_board_pieces, DING, carlsen_pieces, num_carlsen_pieces);
+
+EliminateMoveProbs(num_board_pieces, player, player_pieces_arr, num_player_pieces) = eliminateMoves.player.num_board_pieces{
+	var type_index = 0;
+	while (type_index < 6) {
+		var target_piece_type = PIECE_TYPES[type_index];
+		var has_piece = false;
+
+		var player_piece_index = 0;
+		while (player_piece_index < num_player_pieces) {
+			if (player_pieces_arr[player_piece_index] == target_piece_type) {
+				has_piece = true;
+				player_piece_index = num_player_pieces; //Effectively a break
+			};
+			player_piece_index = player_piece_index + 1;
 		};
-		
-		while (type_index < 6) {
-			var target_piece_type = PIECE_TYPES[type_index];
-			var has_piece = false;
-			var player_piece_index = 0;
-	
-			while (player_piece_index < num_player_pieces) {
-				var player_piece = player_pieces_arr[player_piece_index];
-	
-				if (player_piece == target_piece_type) {
-					has_piece = true;
-					player_piece_index = num_player_pieces; //Effectively a break
-				};
-	
-				player_piece_index = player_piece_index + 1;
-			};
-	
-			if (!has_piece) {
-				var array_piece_count_index = num_board_pieces - MIN_PIECES;
-				move_probs[array_piece_count_index][player][0][type_index] = 0;
-				move_probs[array_piece_count_index][player][1][type_index] = 0;
-				move_probs[array_piece_count_index][player][2][type_index] = 0;
-			};
-	
-			type_index = type_index + 1;
-		}
-		i++;
+
+		if (!has_piece) {
+			var array_piece_count_index = num_board_pieces - MIN_PIECES;
+			move_probs[array_piece_count_index][player][0][type_index] = 0;
+			move_probs[array_piece_count_index][player][1][type_index] = 0;
+			move_probs[array_piece_count_index][player][2][type_index] = 0;
+		};
+
+		type_index = type_index + 1;
 	}
 } -> Skip;
 
-EliminateCaptureProbs(num_board_pieces) = eliminateCaptures.num_board_pieces{
-	var players = [CARLSEN, DING];
-	var i = 0;
-	
-	while (i < 2) {
-		var player = players[i];
-		var type_index = 0;
-		var num_opp_pieces;
-		var opp_pieces_arr;
-		if (player == DING) {
-			num_opp_pieces = num_carlsen_pieces;
-			opp_pieces_arr = carlsen_pieces;
-	
-		} else if (player == CARLSEN) {
-			num_opp_pieces = num_ding_pieces;
-			opp_pieces_arr = ding_pieces;
-	
-		} else {
-			type_index = 6; // We make it not run at all
+EliminateCaptureProbs(num_board_pieces, player, opp_pieces_arr, num_opp_pieces) = eliminateCaptures.player.num_board_pieces{
+	var type_index = 0;
+	while (type_index < 6) {
+		var target_piece_type = PIECE_TYPES[type_index];
+		var has_piece = false;
+		var opp_piece_index = 0;
+
+		while (opp_piece_index < num_opp_pieces) {
+			var opp_piece = opp_pieces_arr[opp_piece_index];
+
+			if (opp_piece == target_piece_type) {
+				has_piece = true;
+				opp_piece_index = num_opp_pieces; //Effectively a break
+			};
+
+			opp_piece_index = opp_piece_index + 1;
 		};
-		
-		while (type_index < 6) {
-			var target_piece_type = PIECE_TYPES[type_index];
-			var has_piece = false;
-			var opp_piece_index = 0;
-	
-			while (opp_piece_index < num_opp_pieces) {
-				var opp_piece = opp_pieces_arr[opp_piece_index];
-	
-				if (opp_piece == target_piece_type) {
-					has_piece = true;
-					opp_piece_index = num_opp_pieces; //Effectively a break
-				};
-	
-				opp_piece_index = opp_piece_index + 1;
-			};
-	
-			if (!has_piece) {
-				var array_piece_count_index = num_board_pieces - MIN_PIECES;
-				capture_probs[array_piece_count_index][player][0][target_piece_type] = 0;
-				capture_probs[array_piece_count_index][player][1][target_piece_type] = 0;
-				capture_probs[array_piece_count_index][player][2][target_piece_type] = 0;
-			};
-	
-			type_index = type_index + 1;
-		}
-		i++;
+
+		if (!has_piece) {
+			var array_piece_count_index = num_board_pieces - MIN_PIECES;
+			capture_probs[array_piece_count_index][player][0][target_piece_type] = 0;
+			capture_probs[array_piece_count_index][player][1][target_piece_type] = 0;
+			capture_probs[array_piece_count_index][player][2][target_piece_type] = 0;
+		};
+
+		type_index = type_index + 1;
 	}
 } -> Skip;
 
@@ -180,24 +143,23 @@ UpdateWinning = updateWinning{
 	}	
 } -> Skip;
 
-SelectStartingPlayer = []i:{CARLSEN, DING}@ selectStartingPlayer{next_turn = i} -> Skip; //Randomised start
+SelectStartingPlayer = []i:{CARLSEN, DING}@ selectStartingPlayer.i{next_turn = i} -> Skip; //Randomised start
 Game = SelectStartingPlayer; EndTurn;
 
-Turn = ([turn_count <= TURN_LIMIT && won == NO_PLAYER && next_turn == CARLSEN]updateTurn{next_turn=DING; turn_count++} -> PlayerMove(CARLSEN)
-    []
-       [turn_count <= TURN_LIMIT && won == NO_PLAYER && next_turn == DING]updateTurn{next_turn=CARLSEN; turn_count++} -> PlayerMove(DING)
-    []
-       [won != NO_PLAYER || turn_count > TURN_LIMIT] GameOver -> Skip
-    );
+Turn = [won != NO_PLAYER || turn_count >= TURN_LIMIT || num_pieces < MIN_PIECES] GameOver -> Skip
+	[]
+		[won == NO_PLAYER && turn_count < TURN_LIMIT && num_pieces >= MIN_PIECES](
+			[next_turn == CARLSEN]updateTurn{next_turn=DING; turn_count++} -> PlayerMove(CARLSEN)
+				[]
+			[next_turn == DING]updateTurn{next_turn=CARLSEN; turn_count++} -> PlayerMove(DING)
+		);
 
-PlayerMove(player) = EliminateMoveProbs(num_pieces); EliminateCaptureProbs(num_pieces); move.player -> (
-	[won == NO_PLAYER && num_pieces >= MIN_PIECES] (
-		[(player == CARLSEN && winning == WINNING_CARLSEN) || (player == DING && winning == WINNING_DING)] SelectPiece(num_pieces, player, POS_WINNING)
-			[]
-		[(player == CARLSEN && winning == WINNING_DING) || (player == DING && winning == WINNING_CARLSEN)] SelectPiece(num_pieces, player, POS_LOSING)
-			[]
-		[winning == WINNING_NEUTRAL]SelectPiece(num_pieces, player, POS_NEUTRAL)
-	)
+PlayerMove(player) = EliminateProbs(num_pieces); move.player -> (
+	[(player == CARLSEN && winning == WINNING_CARLSEN) || (player == DING && winning == WINNING_DING)] SelectPiece(num_pieces, player, POS_WINNING)
+		[]
+	[(player == CARLSEN && winning == WINNING_DING) || (player == DING && winning == WINNING_CARLSEN)] SelectPiece(num_pieces, player, POS_LOSING)
+		[]
+	[winning == WINNING_NEUTRAL] SelectPiece(num_pieces, player, POS_NEUTRAL)
 );
 
 Advance(i) = EndTurn;
@@ -212,12 +174,12 @@ EndLose(i) = loser.i{
 EndDraw(i) = draw{won = DRAW} -> EndTurn;
 
 SelectPiece(board_piece_count, player, win_state) = selectPiece.board_piece_count.player.win_state -> pcase{
-	move_probs[board_piece_count - MIN_PIECES][player][win_state][0]: MoveK -> MovePiece(board_piece_count, player, win_state, K)  
-	move_probs[board_piece_count - MIN_PIECES][player][win_state][1]: MoveQ -> MovePiece(board_piece_count, player, win_state, Q) 
-	move_probs[board_piece_count - MIN_PIECES][player][win_state][2]: MoveR -> MovePiece(board_piece_count, player, win_state, R) 
-	move_probs[board_piece_count - MIN_PIECES][player][win_state][3]: MoveN -> MovePiece(board_piece_count, player, win_state, N) 
-	move_probs[board_piece_count - MIN_PIECES][player][win_state][4]: MoveB -> MovePiece(board_piece_count, player, win_state, B) 
-	move_probs[board_piece_count - MIN_PIECES][player][win_state][5]: MoveP -> MovePiece(board_piece_count, player, win_state, P) 
+	call(getMoveProb, board_piece_count, player, win_state, 0): MoveK -> MovePiece(board_piece_count, player, win_state, K)  
+	call(getMoveProb, board_piece_count, player, win_state, 1): MoveQ -> MovePiece(board_piece_count, player, win_state, Q) 
+	call(getMoveProb, board_piece_count, player, win_state, 2): MoveR -> MovePiece(board_piece_count, player, win_state, R) 
+	call(getMoveProb, board_piece_count, player, win_state, 3): MoveN -> MovePiece(board_piece_count, player, win_state, N) 
+	call(getMoveProb, board_piece_count, player, win_state, 4): MoveB -> MovePiece(board_piece_count, player, win_state, B) 
+	call(getMoveProb, board_piece_count, player, win_state, 5): MoveP -> MovePiece(board_piece_count, player, win_state, P) 
 };
 
 MovePiece(board_piece_count, player, win_state, piece) = (
@@ -227,28 +189,28 @@ MovePiece(board_piece_count, player, win_state, piece) = (
 );
 
 ExecuteMovePieceCarlsen(board_piece_count, win_state, piece) = movePieceCarlsen.board_piece_count.win_state.piece -> pcase{
-	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][0]: Advance(CARLSEN) //Advance piece (no capture)
-	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][1]: Capture(CARLSEN, board_piece_count, win_state) //This will end the game if board_piece_count == 5, so won't model 4 or less pieces (too few data)
-	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][2]: EndWin(CARLSEN) //Checkmate/Opp forfeit
-	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][3]: EndLose(CARLSEN) //Self forfeit
-	CARLSEN_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][4]: EndDraw(CARLSEN) //Declare Draw
+	call(CARLSEN_PIECE_ACT, board_piece_count, win_state, piece, 0): Advance(CARLSEN) //Advance piece (no capture)
+	call(CARLSEN_PIECE_ACT, board_piece_count, win_state, piece, 1): Capture(CARLSEN, board_piece_count, win_state) //This will end the game if board_piece_count == 5, so won't model 4 or less pieces (too few data)
+	call(CARLSEN_PIECE_ACT, board_piece_count, win_state, piece, 2): EndWin(CARLSEN) //Checkmate/Opp forfeit
+	call(CARLSEN_PIECE_ACT, board_piece_count, win_state, piece, 3): EndLose(CARLSEN) //Self forfeit
+	call(CARLSEN_PIECE_ACT, board_piece_count, win_state, piece, 4): EndDraw(CARLSEN) //Declare Draw
 };
 
 ExecuteMovePieceDing(board_piece_count, win_state, piece) = movePieceDing.board_piece_count.win_state.piece -> pcase{
-	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][0]: Advance(DING) //Advance piece (no capture)
-	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][1]: Capture(DING, board_piece_count, win_state) //This will end the game if board_piece_count == 5, so won't model 4 or less pieces (too few data)
-	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][2]: EndWin(DING) //Checkmate/Opp forfeit
-	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][3]: EndLose(DING) //Self forfeit
-	DING_PIECE_ACTION_PROBS[board_piece_count - MIN_PIECES][win_state][piece][4]: EndDraw(DING) //Declare Draw
+	call(DING_PIECE_ACT, board_piece_count, win_state, piece, 0): Advance(DING) //Advance piece (no capture)
+	call(DING_PIECE_ACT, board_piece_count, win_state, piece, 1): Capture(DING, board_piece_count, win_state) //This will end the game if board_piece_count == 5, so won't model 4 or less pieces (too few data)
+	call(DING_PIECE_ACT, board_piece_count, win_state, piece, 2): EndWin(DING) //Checkmate/Opp forfeit
+	call(DING_PIECE_ACT, board_piece_count, win_state, piece, 3): EndLose(DING) //Self forfeit
+	call(DING_PIECE_ACT, board_piece_count, win_state, piece, 4): EndDraw(DING) //Declare Draw
 };
 
-Capture (player, board_piece_count, win_state) = pcase{
-	capture_probs[board_piece_count - MIN_PIECES][player][win_state][0]: ExecuteCapture(player, K) 
-	capture_probs[board_piece_count - MIN_PIECES][player][win_state][1]: ExecuteCapture(player, Q)
-	capture_probs[board_piece_count - MIN_PIECES][player][win_state][2]: ExecuteCapture(player, R)
-	capture_probs[board_piece_count - MIN_PIECES][player][win_state][3]: ExecuteCapture(player, N)
-	capture_probs[board_piece_count - MIN_PIECES][player][win_state][4]: ExecuteCapture(player, B)
-	capture_probs[board_piece_count - MIN_PIECES][player][win_state][5]: ExecuteCapture(player, P)
+Capture(player, board_piece_count, win_state) = pcase{
+	call(getCaptureProb, board_piece_count, player, win_state, 0): ExecuteCapture(player, K) 
+	call(getCaptureProb, board_piece_count, player, win_state, 1): ExecuteCapture(player, Q)
+	call(getCaptureProb, board_piece_count, player, win_state, 2): ExecuteCapture(player, R)
+	call(getCaptureProb, board_piece_count, player, win_state, 3): ExecuteCapture(player, N)
+	call(getCaptureProb, board_piece_count, player, win_state, 4): ExecuteCapture(player, B)
+	call(getCaptureProb, board_piece_count, player, win_state, 5): ExecuteCapture(player, P)
 };
 
 ExecuteCapture(player, piece) = performCapture.player.piece{
