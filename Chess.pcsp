@@ -253,7 +253,7 @@ ExecuteCapture(player, piece) = performCapture.player.piece{
 } -> EndTurn;
 
 //////////////////////////////////////// START OF ASSERTIONS /////////////////////////////////////////
-#assert Game deadlockfree;
+#assert Game |= <> GameOver;
 
 #define CarlsenWin won == CARLSEN;
 #assert Game reaches CarlsenWin with prob;
