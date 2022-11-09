@@ -28,10 +28,10 @@ var PIECE_TYPES = [K, Q, R, N, B, P];
 #define TURN_LIMIT 10;
 
 // Start of Input Section
-var carlsen_pieces = [K, P, P, B];
-var num_carlsen_pieces = 4;
+var carlsen_pieces = [K, P, P, P, Q];
+var num_carlsen_pieces = 5;
 
-var ding_pieces = [K, P, P, P, P];
+var ding_pieces = [K, P, B, Q, P];
 var num_ding_pieces = 5;
 
 var num_pieces = num_carlsen_pieces + num_ding_pieces;
@@ -52,12 +52,7 @@ var turn_count = 0;
 #define getCaptureProb(w,x,y,z) capture_probs[w - MIN_PIECES][x][y][z];
 #define getMoveProb(w,x,y,z) move_probs[w - MIN_PIECES][x][y][z];
 
-EliminateProbs(num_board_pieces) = EliminateMoveProbs(num_board_pieces, CARLSEN, carlsen_pieces, num_carlsen_pieces);
-								   EliminateCaptureProbs(num_board_pieces, CARLSEN, ding_pieces, num_ding_pieces);
-								   EliminateMoveProbs(num_board_pieces, DING, ding_pieces, num_ding_pieces);
-								   EliminateCaptureProbs(num_board_pieces, DING, carlsen_pieces, num_carlsen_pieces);
-
-EliminateMoveProbs(num_board_pieces, player, player_pieces_arr, num_player_pieces) = eliminateMoves.player.num_board_pieces{
+#define eliminateMoveProbs(num_board_pieces, player, player_pieces_arr, num_player_pieces) {
 	var type_index = 0;
 	while (type_index < 6) {
 		var target_piece_type = PIECE_TYPES[type_index];
@@ -81,9 +76,9 @@ EliminateMoveProbs(num_board_pieces, player, player_pieces_arr, num_player_piece
 
 		type_index = type_index + 1;
 	}
-} -> Skip;
+};
 
-EliminateCaptureProbs(num_board_pieces, player, opp_pieces_arr, num_opp_pieces) = eliminateCaptures.player.num_board_pieces{
+#define eliminateCaptureProbs(num_board_pieces, player, opp_pieces_arr, num_opp_pieces) {
 	var type_index = 0;
 	while (type_index < 6) {
 		var target_piece_type = PIECE_TYPES[type_index];
@@ -110,6 +105,13 @@ EliminateCaptureProbs(num_board_pieces, player, opp_pieces_arr, num_opp_pieces) 
 
 		type_index = type_index + 1;
 	}
+};
+
+EliminateProbs(num_board_pieces) = eliminateProbs.num_board_pieces{
+	call(eliminateMoveProbs, num_board_pieces, CARLSEN, carlsen_pieces, num_carlsen_pieces);
+	call(eliminateCaptureProbs, num_board_pieces, CARLSEN, ding_pieces, num_ding_pieces);
+	call(eliminateMoveProbs, num_board_pieces, DING, ding_pieces, num_ding_pieces);
+	call(eliminateCaptureProbs, num_board_pieces, DING, carlsen_pieces, num_carlsen_pieces);
 } -> Skip;
 
 //////////////////////////////////////// START OF GAME PROCESSES /////////////////////////////////////////
