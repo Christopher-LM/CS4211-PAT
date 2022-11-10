@@ -148,20 +148,21 @@ UpdateWinning = updateWinning{
 SelectStartingPlayer = []i:{CARLSEN, DING}@ selectStartingPlayer.i{next_turn = i} -> Skip; //Randomised start
 Game = SelectStartingPlayer; EndTurn;
 
-Turn = [won != NO_PLAYER || turn_count >= TURN_LIMIT || num_pieces < MIN_PIECES] GameOver -> Skip
+Turn = ([turn_count <= TURN_LIMIT && won == NO_PLAYER && next_turn == CARLSEN]updateTurn{next_turn=DING; turn_count++} -> PlayerMove(CARLSEN)
 	[]
-		[won == NO_PLAYER && turn_count < TURN_LIMIT && num_pieces >= MIN_PIECES](
-			[next_turn == CARLSEN]updateTurn{next_turn=DING; turn_count++} -> PlayerMove(CARLSEN)
-				[]
-			[next_turn == DING]updateTurn{next_turn=CARLSEN; turn_count++} -> PlayerMove(DING)
-		);
+	   [turn_count <= TURN_LIMIT && won == NO_PLAYER && next_turn == DING]updateTurn{next_turn=CARLSEN; turn_count++} -> PlayerMove(DING)
+	[]
+	   [won != NO_PLAYER || turn_count > TURN_LIMIT] GameOver -> Skip
+);
 
 PlayerMove(player) = EliminateProbs(num_pieces); move.player -> (
-	[(player == CARLSEN && winning == WINNING_CARLSEN) || (player == DING && winning == WINNING_DING)] SelectPiece(num_pieces, player, POS_WINNING)
-		[]
-	[(player == CARLSEN && winning == WINNING_DING) || (player == DING && winning == WINNING_CARLSEN)] SelectPiece(num_pieces, player, POS_LOSING)
-		[]
-	[winning == WINNING_NEUTRAL] SelectPiece(num_pieces, player, POS_NEUTRAL)
+	[won == NO_PLAYER && num_pieces >= MIN_PIECES] (
+		[(player == CARLSEN && winning == WINNING_CARLSEN) || (player == DING && winning == WINNING_DING)] SelectPiece(num_pieces, player, POS_WINNING)
+			[]
+		[(player == CARLSEN && winning == WINNING_DING) || (player == DING && winning == WINNING_CARLSEN)] SelectPiece(num_pieces, player, POS_LOSING)
+			[]
+		[winning == WINNING_NEUTRAL]SelectPiece(num_pieces, player, POS_NEUTRAL)
+	)
 );
 
 Advance(i) = EndTurn;
